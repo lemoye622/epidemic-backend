@@ -3,6 +3,8 @@ const router = require('koa-router')()
 
 // 引入 body 响应
 const BodyRes = require('../../config/bodyRes.js')
+// 引入 resultData 文件
+const result = require('../../config/resultData.js')
 // 引入操作数据库的类
 const { DatabaseAdd } = require('../../config/publicApi.js')
 
@@ -19,12 +21,12 @@ router.post('/diagnosis', async ctx => {
 	
 	// let name = ctx.request.body.name
 	// new bodyRes(ctx, 'SUCCESS', name, 200).successRes()
-	
+		
 	let base = `db.collection('list_data').add({
 		// data 字段表示需新增的 JSON 数据
 		data: { 
-			name: 'Taylor Swift',
-			age: 18
+			name: 'vae',
+			age: 34
 		}
 	})`
 	

@@ -3,6 +3,8 @@ const qs = require('querystring')
 
 // body响应
 const BodyRes = require('./bodyRes.js');
+// 引入 resultData 文件
+const result = require('./resultData.js')
 
 // 拼接URL地址
 const param = qs.stringify({
@@ -72,9 +74,14 @@ class DatabaseAdd extends GetToken {
 	}
 	
 	async databaseAdd(query) {
-		let token = await this.getToken()
-		// console.log(token)
-		let url = addUrl + token
+		try{
+			let token = await this.getToken()
+			// console.log(token)
+			var url = addUrl + token
+		}catch(e){
+			throw new result('获取token出现错误', 500)
+		}
+		
 		let data = {
 			env,
 			"query": query
