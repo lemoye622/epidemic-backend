@@ -5,12 +5,15 @@ const json = require('koa-json')
 const bodyParser = require('koa-bodyparser')
 // () 实例化路由
 const router = require('koa-router')()
+// 解决跨域
+const cors = require('koa-cors')
 // 全局异常处理中间件
 const abnormal = require('./config/abnormal.js')
 
 app.use(json())
 app.use(bodyParser())
 app.use(abnormal)
+app.use(cors())
 
 // 引入newly文件
 const newlydata = require('./routers/newly/newly.js')
