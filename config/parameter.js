@@ -113,6 +113,61 @@ class Parameter {
 		]
 		return arrPar
 	}
+	
+	// 新增死亡
+	deathPar() {
+		let {
+			Abroaddie,
+			Guangzhoudie,
+			Shaoguandie,
+			Shenzhendie,
+			Zhuhaidie,
+			Shantoudie,
+			Foshandie,
+			Jiangmendie,
+			Zhanjiangdie,
+			Maomingdie,
+			Zhaoqingdie,
+			Huizhoudie,
+			Meizhoudie,
+			Shanweidie,
+			Heyuandie,
+			Yangjiangdie,
+			Qingyuandie,
+			Dongwandie,
+			Zhongshandie,
+			Dongshaqundaodie,
+			Chaozhoudie,
+			Jieyangdie,
+			Yunfudie
+		} = this.body
+		let arrPar = [
+			Abroaddie,
+			Guangzhoudie,
+			Shaoguandie,
+			Shenzhendie,
+			Zhuhaidie,
+			Shantoudie,
+			Foshandie,
+			Jiangmendie,
+			Zhanjiangdie,
+			Maomingdie,
+			Zhaoqingdie,
+			Huizhoudie,
+			Meizhoudie,
+			Shanweidie,
+			Heyuandie,
+			Yangjiangdie,
+			Qingyuandie,
+			Dongwandie,
+			Zhongshandie,
+			Dongshaqundaodie,
+			Chaozhoudie,
+			Jieyangdie,
+			Yunfudie
+		]
+		return arrPar
+	}
 }
 
 module.exports = Parameter

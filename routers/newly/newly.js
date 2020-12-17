@@ -51,4 +51,17 @@ router.post('/cure', async ctx => {
 	await new DatabaseAdd(ctx).databaseAdd(query)
 })
 
+// 新增死亡
+router.post('/death', async ctx => {
+	let arrPar = new Parameter(ctx.request.body).deathPar()
+	new NewlyIncreased(ctx, arrPar).increasedFun('死亡')
+	let objData = new ObjectForm(arrPar).objDeath()
+	let time = JSON.stringify(datetime.format(new Date(), 'YYYY-MM-DD HH:mm:ss'))
+	let query = `db.collection('death').add({
+		data: { deathData: ${objData}, time: ${time}}
+	})`
+	
+	await new DatabaseAdd(ctx).databaseAdd(query)
+})
+
 module.exports = router.routes()
