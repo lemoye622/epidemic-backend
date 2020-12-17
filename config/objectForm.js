@@ -34,6 +34,36 @@ class ObjectForm {
 		// 将对象转换成字符串
 		return JSON.stringify(data)
 	}
+	
+	// 新增治愈
+	objCure() {
+		let data = {
+			Abroadcure: Number(this.obj[0]),
+			Guangzhoucure: Number(this.obj[1]),
+			Shaoguancure: Number(this.obj[2]),
+			Shenzhencure: Number(this.obj[3]),
+			Zhuhaicure: Number(this.obj[4]),
+			Shantoucure: Number(this.obj[5]),
+			Foshancure: Number(this.obj[6]),
+			Jiangmencure: Number(this.obj[7]),
+			Zhanjiangcure: Number(this.obj[8]),
+			Maomingcure: Number(this.obj[9]),
+			Zhaoqingcure: Number(this.obj[10]),
+			Huizhoucure: Number(this.obj[11]),
+			Meizhoucure: Number(this.obj[12]),
+			Shanweicure: Number(this.obj[13]),
+			Heyuancure: Number(this.obj[14]),
+			Yangjiangcure: Number(this.obj[15]),
+			Qingyuancure: Number(this.obj[16]),
+			Dongwancure: Number(this.obj[17]),
+			Zhongshancure: Number(this.obj[18]),
+			Dongshaqundaocure: Number(this.obj[19]),
+			Chaozhoucure: Number(this.obj[20]),
+			Jieyangcure: Number(this.obj[21]),
+			Yunfucure: Number(this.obj[22])
+		}
+		return JSON.stringify(data)
+	}
 }
 
 module.exports = ObjectForm
