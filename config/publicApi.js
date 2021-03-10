@@ -18,8 +18,11 @@ let url = 'https://api.weixin.qq.com/cgi-bin/token?' + param
 
 // 云环境 id
 let env = 'epidemic-7guqm06ef9b46335'
+
 // 数据库插入记录的URL
 let addUrl = 'https://api.weixin.qq.com/tcb/databaseadd?access_token='
+// 数据库查询记录URL
+let queryUrl = 'https://api.weixin.qq.com/tcb/databasequery?access_token='
 
 
 class GetToken {
@@ -96,4 +99,36 @@ class DatabaseAdd extends GetToken {
 	}
 }
 
-module.exports = { DatabaseAdd }
+// 查询数据库
+class DatabaseQuery extends GetToken {
+	constructor(ctx) {
+		super(ctx)
+	}
+	
+	async databaseQuery(query) {
+		try{
+			let token = await this.getToken()
+			var url = queryUrl + token
+		}catch(e){
+			throw new result('获取token出现错误', 500)
+		}
+		
+		let data = {
+			env,
+			"query": query
+		}
+		try{
+			let queryvp = await this.pullDatabase(url, data)
+			console.log(queryvp.data) // 打印出来是 [' { } '] ，里面字符串需要解析成对象
+			let querydata = queryvp.data.map((item) => {
+				return JSON.parse(item)
+			})
+			console.log(querydata)
+			new BodyRes(this.ctx, 'SUCCESS', querydata).successRes()
+		}catch(e){
+			new BodyRes(this.ctx).errorRes('请求失败!', 500)
+		}
+	}
+}
+
+module.exports = { DatabaseAdd, DatabaseQuery }

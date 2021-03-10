@@ -15,7 +15,7 @@ const { NewlyIncreased } = require('../../config/check.js')
 // 给键值对形式，以对象的形式
 const ObjectForm = require('../../config/objectForm.js')
 // 引入操作数据库的类
-const { DatabaseAdd } = require('../../config/publicApi.js')
+const { DatabaseAdd, DatabaseQuery } = require('../../config/publicApi.js')
 
 // 新增确诊
 router.post('/diagnosis', async ctx => {
@@ -32,7 +32,7 @@ router.post('/diagnosis', async ctx => {
 	// 提交到集合
 	let query = `db.collection('diagnosis').add({
 		// data 字段表示需新增的 JSON 数据
-		data: { diagnosisData: ${objData}, time: ${time}}
+		data: { data: ${objData}, time: ${time}}
 	})`
 	
 	await new DatabaseAdd(ctx).databaseAdd(query)
@@ -45,7 +45,7 @@ router.post('/cure', async ctx => {
 	let objData = new ObjectForm(arrPar).objCure()
 	let time = JSON.stringify(datetime.format(new Date(), 'YYYY-MM-DD HH:mm:ss'))
 	let query = `db.collection('cure').add({
-		data: { cureData: ${objData}, time: ${time}}
+		data: { data: ${objData}, time: ${time}}
 	})`
 	
 	await new DatabaseAdd(ctx).databaseAdd(query)
@@ -58,10 +58,18 @@ router.post('/death', async ctx => {
 	let objData = new ObjectForm(arrPar).objDeath()
 	let time = JSON.stringify(datetime.format(new Date(), 'YYYY-MM-DD HH:mm:ss'))
 	let query = `db.collection('death').add({
-		data: { deathData: ${objData}, time: ${time}}
+		data: { data: ${objData}, time: ${time}}
 	})`
 	
 	await new DatabaseAdd(ctx).databaseAdd(query)
+})
+
+// 获取健康上报信息数据
+router.get('/healthInfo', async ctx => {
+	console.log('10')
+	// get请求集合所有数据
+	let query = `db.collection('healthInfo').get()`
+	await new DatabaseQuery(ctx).databaseQuery(query)
 })
 
 module.exports = router.routes()
