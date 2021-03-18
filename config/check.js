@@ -122,7 +122,7 @@ class NewlyIncreased extends Check {
 // 文章的校验
 class Richtext extends Check {
 	richtextFun(){
-		let arr = ['请填写标题','请填写作者','请填写正文']
+		let arr = ['请填写标题','请填写作者名字','请填写正文']
 		super.Errunder()
 		super.Parameter(arr)
 		super.Blank(arr)
