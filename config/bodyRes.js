@@ -19,7 +19,7 @@ class BodyRes {
 	// 错误的响应
 	errorRes(errorMsg, codes) {
 		this.ctx.body = {
-			msg: this.errorMsg
+			msg: errorMsg
 		}
 		this.ctx.status = codes
 	}

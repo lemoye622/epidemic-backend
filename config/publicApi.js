@@ -105,7 +105,7 @@ class DatabaseQuery extends GetToken {
 		super(ctx)
 	}
 	
-	async databaseQuery(query) {
+	async databaseQuery(query, type) {
 		try{
 			let token = await this.getToken()
 			var url = queryUrl + token
@@ -123,8 +123,19 @@ class DatabaseQuery extends GetToken {
 			let querydata = queryvp.data.map((item) => {
 				return JSON.parse(item)
 			})
-			console.log(querydata)
-			new BodyRes(this.ctx, 'SUCCESS', querydata).successRes()
+			// console.log(querydata)
+			// 登录
+			if (type == 'vp') {
+				console.log('登录')
+				console.log(querydata)
+				if (querydata.length === 0) {
+					new BodyRes(this.ctx).errorRes('账号或密码错误!', 202)
+				} else {
+					new BodyRes(this.ctx, 'SUCCESS', querydata[0].token).successRes()
+				}
+			} else {
+				new BodyRes(this.ctx, 'SUCCESS', querydata).successRes()
+			}
 		}catch(e){
 			new BodyRes(this.ctx).errorRes('请求失败!', 500)
 		}

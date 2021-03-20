@@ -8,12 +8,8 @@ let client = new OSS({
 	// 自己的阿里云域名
 	// endpoint: 'http://oss-cn-hangzhou.aliyuncs.com',
 	//云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，部署在服务端使用RAM子账号或STS，部署在客户端使用STS
-	// accessKeyId: 'LTAI4GErKsEEXQ6hk2Dqk1dd',
-	// accessKeySecret: 'Hg2k68RZjMKu1bFaVsgYnePu5oUWm6',
-	// accessKeyId: 'LTAI4G1SEocMjFPiycV5UY6i',
-	// accessKeySecret: 'mfpjKl8YGPLdwwzn65LbwtGos6ii4z',
-	accessKeyId: 'LTAI4G1pHbh3hEpgev39AEhi',
-	accessKeySecret: 'r4RSZsSQ714KjxtAaAQCyqp1wBei06',
+	accessKeyId: 'LTAI5t9yZ7EYpZ6fsgp3YRYf',
+	accessKeySecret: 'VgBUzpQPfDExPpcAgx3KaSCnsJZLSZ',
 	bucket: 'hebelove',
 	// bucket: 'hebeiloveu'
 	// cname: true

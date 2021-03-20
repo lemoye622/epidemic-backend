@@ -133,7 +133,7 @@ class Richtext extends Check {
 // 登录校验
 class Login extends Check {
 	loginFun(){
-		let arr = ['请填写手机号码','请填写密码']
+		let arr = ['请填写账号（手机号码）', '请填写密码']
 		super.Errunder()
 		super.Parameter(arr)
 		super.Blank(arr)

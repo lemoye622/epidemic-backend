@@ -11,7 +11,7 @@ const result = require('../../config/resultData.js')
 // 引入字段表
 const Parameter = require('../../config/parameter.js')
 // 参数校验
-const { NewlyIncreased, Richtext } = require('../../config/check.js')
+const { NewlyIncreased, Richtext, Login } = require('../../config/check.js')
 // 给键值对形式，以对象的形式
 const ObjectForm = require('../../config/objectForm.js')
 // 引入操作数据库的类
@@ -71,7 +71,7 @@ router.get('/healthInfo', async ctx => {
 	console.log('10')
 	// get请求集合所有数据
 	let query = `db.collection('healthInfo').get()`
-	await new DatabaseQuery(ctx).databaseQuery(query)
+	await new DatabaseQuery(ctx).databaseQuery(query, 'ip')
 })
 
 // 富文本编辑器上传图片
@@ -83,7 +83,7 @@ router.post('/articleimg', upload.single('file'), async ctx => {
 	console.log(ctx.req.file)
 	try{
 		let articleimg = await uploadimg(ctx.req.file.path)
-		console.log('11', articleimg)
+		console.log('上传图片路径', articleimg)
 		new BodyRes(ctx, 'SUCCESS', articleimg).successRes()
 	}catch(e){
 		new BodyRes(ctx).errorRes('FAIL', 500)
@@ -117,6 +117,19 @@ router.post('/article', upload.single('file'), async ctx=>{
 		data:{titles:'${title}',authors:'${author}',times:${time},content:'${article}',articIds:'${articId}'}
 	})`
 	await new DatabaseAdd(ctx).databaseAdd(querycontent)
+})
+
+// 登录
+router.post('/login', async ctx => {
+	// 给前端的字段
+	let {account, password} = ctx.request.body
+	let arrpar = [account, password]
+	// 参数校验
+	new Login(ctx, arrpar).loginFun()
+	// 查询云数据库的账号密码
+	// 与用户输入的相比较，如果正确则做返回token存到本地
+	let query = `db.collection('admin').where({account: '${account}', password: '${password}'}).get()`
+	await new DatabaseQuery(ctx).databaseQuery(query, 'vp')
 })
 
 module.exports = router.routes()
